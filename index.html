@@ -4,718 +4,320 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Eric Reithel — Video Editor & Journalist</title>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  :root {
-    --navy: #1B3A5C;
-    --navy-dark: #0f2238;
-    --navy-mid: #254d7a;
-    --gold: #C8973A;
-    --gold-light: #e8b45a;
-    --off-white: #F4F1EC;
-    --gray-light: #E8E4DC;
-    --gray-mid: #9A9488;
-    --dark: #1A1814;
-    --text: #2C2820;
-  }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--off-white);
-    color: var(--text);
-    overflow-x: hidden;
-  }
-
-  /* NAV */
-  nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1.2rem 4rem;
-    background: rgba(27, 58, 92, 0.97);
-    backdrop-filter: blur(8px);
-  }
-
-  .nav-logo {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.5rem;
-    letter-spacing: 0.12em;
-    color: var(--off-white);
-    text-decoration: none;
-  }
-
-  .nav-logo span { color: var(--gold); }
-
-  .nav-links {
-    display: flex;
-    gap: 2.5rem;
-    list-style: none;
-  }
-
-  .nav-links a {
-    font-size: 0.78rem;
-    font-weight: 500;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: rgba(244,241,236,0.7);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-
-  .nav-links a:hover { color: var(--gold-light); }
-
-  /* HERO */
-  .hero {
-    min-height: 100vh;
-    background: var(--navy-dark);
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .hero::before {
-    content: '';
-    position: absolute;
-    top: -200px; right: -200px;
-    width: 700px; height: 700px;
-    border-radius: 50%;
-    border: 1px solid rgba(200,151,58,0.12);
-  }
-
-  .hero::after {
-    content: '';
-    position: absolute;
-    bottom: -300px; left: -100px;
-    width: 600px; height: 600px;
-    border-radius: 50%;
-    border: 1px solid rgba(200,151,58,0.08);
-  }
-
-  .hero-left {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 8rem 4rem 6rem 6rem;
-    position: relative;
-    z-index: 2;
-  }
-
-  .hero-eyebrow {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.72rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 1.5rem;
-  }
-
-  .hero-name {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(4rem, 7vw, 7rem);
-    line-height: 0.92;
-    color: var(--off-white);
-    letter-spacing: 0.04em;
-    margin-bottom: 1.8rem;
-  }
-
-  .hero-name span {
-    display: block;
-    color: var(--gold);
-  }
-
-  .hero-tagline {
-    font-size: 1.05rem;
-    font-weight: 300;
-    line-height: 1.7;
-    color: rgba(244,241,236,0.65);
-    max-width: 440px;
-    margin-bottom: 3rem;
-  }
-
-  .hero-cta {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-  }
-
-  .btn {
-    display: inline-block;
-    padding: 0.85rem 2rem;
-    font-size: 0.8rem;
-    font-weight: 500;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    text-decoration: none;
-    transition: all 0.2s;
-    cursor: pointer;
-    border: none;
-    font-family: 'DM Sans', sans-serif;
-  }
-
-  .btn-primary {
-    background: var(--gold);
-    color: var(--navy-dark);
-  }
-
-  .btn-primary:hover {
-    background: var(--gold-light);
-    transform: translateY(-2px);
-  }
-
-  .btn-outline {
-    background: transparent;
-    color: var(--off-white);
-    border: 1px solid rgba(244,241,236,0.3);
-  }
-
-  .btn-outline:hover {
-    border-color: var(--gold);
-    color: var(--gold-light);
-    transform: translateY(-2px);
-  }
-
-  .hero-right {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 8rem 6rem 6rem 4rem;
-    position: relative;
-    z-index: 2;
-  }
-
-  .emmy-badge {
-    background: linear-gradient(135deg, rgba(200,151,58,0.15), rgba(200,151,58,0.05));
-    border: 1px solid rgba(200,151,58,0.35);
-    padding: 2.5rem 3rem;
-    text-align: center;
-    position: relative;
-    max-width: 360px;
-    width: 100%;
-  }
-
-  .emmy-badge::before {
-    content: '';
-    position: absolute;
-    top: 8px; left: 8px; right: -8px; bottom: -8px;
-    border: 1px solid rgba(200,151,58,0.15);
-    z-index: -1;
-  }
-
-  .emmy-icon {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-    display: block;
-  }
-
-  .emmy-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 0.75rem;
-  }
-
-  .emmy-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.4rem;
-    letter-spacing: 0.08em;
-    color: var(--off-white);
-    line-height: 1.2;
-    margin-bottom: 0.5rem;
-  }
-
-  .emmy-sub {
-    font-size: 0.78rem;
-    color: rgba(244,241,236,0.5);
-    line-height: 1.5;
-  }
-
-  .hero-stats {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1px;
-    background: rgba(244,241,236,0.08);
-    margin-top: 2rem;
-    width: 100%;
-    max-width: 360px;
-  }
-
-  .stat {
-    background: var(--navy-dark);
-    padding: 1.5rem;
-    text-align: center;
-  }
-
-  .stat-num {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 2.2rem;
-    color: var(--gold);
-    letter-spacing: 0.05em;
-    display: block;
-  }
-
-  .stat-label {
-    font-size: 0.7rem;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: rgba(244,241,236,0.45);
-    margin-top: 0.2rem;
-  }
-
-  /* SECTION SHARED */
-  section { padding: 6rem 6rem; }
-
-  .section-tag {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.68rem;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 1rem;
-  }
-
-  .section-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(2.5rem, 4vw, 3.8rem);
-    letter-spacing: 0.05em;
-    color: var(--navy);
-    line-height: 1;
-    margin-bottom: 1.5rem;
-  }
-
-  .section-title.light { color: var(--off-white); }
-
-  .divider {
-    width: 60px;
-    height: 3px;
-    background: var(--gold);
-    margin-bottom: 3rem;
-  }
-
-  /* REEL SECTION */
-  .reel-section {
-    background: var(--navy);
-    color: var(--off-white);
-    padding: 6rem;
-  }
-
-  .reel-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-    margin-top: 3rem;
-  }
-
-  .reel-card {
-    background: rgba(244,241,236,0.04);
-    border: 1px solid rgba(244,241,236,0.1);
-    transition: all 0.3s;
-    cursor: pointer;
-    text-decoration: none;
-    display: block;
-  }
-
-  .reel-card:hover {
-    border-color: var(--gold);
-    transform: translateY(-4px);
-    background: rgba(200,151,58,0.06);
-  }
-
-  .reel-thumb {
-    aspect-ratio: 16/9;
-    background: rgba(244,241,236,0.06);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .reel-thumb::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: repeating-linear-gradient(
-      45deg,
-      transparent,
-      transparent 20px,
-      rgba(244,241,236,0.015) 20px,
-      rgba(244,241,236,0.015) 21px
-    );
-  }
-
-  .play-btn {
-    width: 56px; height: 56px;
-    border-radius: 50%;
-    border: 2px solid rgba(200,151,58,0.6);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    z-index: 1;
-    transition: all 0.2s;
-  }
-
-  .reel-card:hover .play-btn {
-    border-color: var(--gold);
-    background: rgba(200,151,58,0.15);
-  }
-
-  .play-btn::after {
-    content: '';
-    width: 0;
-    height: 0;
-    border-style: solid;
-    border-width: 9px 0 9px 18px;
-    border-color: transparent transparent transparent var(--gold);
-    margin-left: 4px;
-  }
-
-  .reel-placeholder-text {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.6rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: rgba(244,241,236,0.25);
-    margin-top: 1rem;
-    position: relative;
-    z-index: 1;
-  }
-
-  .reel-info {
-    padding: 1.25rem 1.5rem;
-  }
-
-  .reel-client {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.62rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 0.4rem;
-  }
-
-  .reel-title {
-    font-size: 0.95rem;
-    font-weight: 500;
-    color: var(--off-white);
-    line-height: 1.3;
-    margin-bottom: 0.4rem;
-  }
-
-  .reel-desc {
-    font-size: 0.78rem;
-    font-weight: 300;
-    color: rgba(244,241,236,0.5);
-    line-height: 1.5;
-  }
-
-  /* EXPERIENCE */
-  .experience-section { background: var(--off-white); }
-
-  .exp-layout {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 6rem;
-    align-items: start;
-  }
-
-  .exp-sticky {
-    position: sticky;
-    top: 7rem;
-  }
-
-  .exp-body-text {
-    font-size: 1rem;
-    font-weight: 300;
-    line-height: 1.8;
-    color: var(--gray-mid);
-    margin-top: 1.5rem;
-  }
-
-  .exp-list { display: flex; flex-direction: column; gap: 0; }
-
-  .exp-item {
-    border-top: 1px solid var(--gray-light);
-    padding: 2rem 0;
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 2rem;
-    align-items: start;
-  }
-
-  .exp-item:last-child { border-bottom: 1px solid var(--gray-light); }
-
-  .exp-dates {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.68rem;
-    letter-spacing: 0.1em;
-    color: var(--gray-mid);
-    white-space: nowrap;
-    padding-top: 0.2rem;
-    min-width: 110px;
-  }
-
-  .exp-role {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.3rem;
-    letter-spacing: 0.05em;
-    color: var(--navy);
-    line-height: 1.1;
-    margin-bottom: 0.25rem;
-  }
-
-  .exp-company {
-    font-size: 0.82rem;
-    font-weight: 500;
-    color: var(--gold);
-    letter-spacing: 0.05em;
-    margin-bottom: 0.75rem;
-  }
-
-  .exp-bullets {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  .exp-bullets li {
-    font-size: 0.85rem;
-    font-weight: 300;
-    color: #555048;
-    line-height: 1.6;
-    padding-left: 1rem;
-    position: relative;
-  }
-
-  .exp-bullets li::before {
-    content: '—';
-    position: absolute;
-    left: 0;
-    color: var(--gold);
-    font-size: 0.75rem;
-  }
-
-  /* SKILLS */
-  .skills-section {
-    background: var(--dark);
-    color: var(--off-white);
-  }
-
-  .skills-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2px;
-    background: rgba(244,241,236,0.06);
-    margin-top: 3rem;
-  }
-
-  .skill-block {
-    background: var(--dark);
-    padding: 2.5rem 2rem;
-  }
-
-  .skill-icon {
-    font-size: 1.8rem;
-    margin-bottom: 1.25rem;
-    display: block;
-  }
-
-  .skill-heading {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.3rem;
-    letter-spacing: 0.06em;
-    color: var(--off-white);
-    margin-bottom: 1rem;
-  }
-
-  .skill-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-  }
-
-  .tag {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    padding: 0.35rem 0.75rem;
-    border: 1px solid rgba(244,241,236,0.12);
-    color: rgba(244,241,236,0.6);
-  }
-
-  .tag.highlight {
-    border-color: rgba(200,151,58,0.4);
-    color: var(--gold);
-  }
-
-  /* ABOUT */
-  .about-section {
-    background: var(--off-white);
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0;
-    padding: 0;
-  }
-
-  .about-left {
-    padding: 6rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-
-  .about-right {
-    background: var(--navy);
-    padding: 6rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-
-  .about-text {
-    font-size: 1rem;
-    font-weight: 300;
-    line-height: 1.9;
-    color: #554f48;
-    margin-top: 1.5rem;
-  }
-
-  .credential-list {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    margin-top: 2rem;
-  }
-
-  .credential-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 1rem;
-  }
-
-  .cred-dot {
-    width: 6px; height: 6px;
-    background: var(--gold);
-    border-radius: 50%;
-    margin-top: 0.5rem;
-    flex-shrink: 0;
-  }
-
-  .cred-text {
-    font-size: 0.88rem;
-    font-weight: 300;
-    color: rgba(244,241,236,0.65);
-    line-height: 1.6;
-  }
-
-  .cred-text strong {
-    color: var(--off-white);
-    font-weight: 500;
-    display: block;
-    font-size: 0.82rem;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    margin-bottom: 0.2rem;
-  }
-
-  /* CONTACT */
-  .contact-section {
-    background: var(--navy-dark);
-    text-align: center;
-    padding: 6rem;
-  }
-
-  .contact-links {
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    flex-wrap: wrap;
-    margin-top: 3rem;
-  }
-
-  .contact-link {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-    text-decoration: none;
-    color: var(--off-white);
-    transition: all 0.2s;
-    padding: 1.5rem 2rem;
-    border: 1px solid rgba(244,241,236,0.1);
-    min-width: 180px;
-  }
-
-  .contact-link:hover {
-    border-color: var(--gold);
-    color: var(--gold-light);
-    transform: translateY(-3px);
-  }
-
-  .contact-link-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.62rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--gold);
-  }
-
-  .contact-link-value {
-    font-size: 0.9rem;
-    font-weight: 300;
-  }
-
-  /* FOOTER */
-  footer {
-    background: var(--dark);
-    text-align: center;
-    padding: 2rem 6rem;
-    font-family: 'DM Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.12em;
-    color: rgba(244,241,236,0.25);
-    text-transform: uppercase;
-  }
-
-  @media (max-width: 900px) {
-    nav { padding: 1rem 2rem; }
-    .nav-links { gap: 1.5rem; }
-    .hero { grid-template-columns: 1fr; min-height: auto; }
-    .hero-left { padding: 8rem 2rem 3rem; }
-    .hero-right { padding: 2rem 2rem 5rem; }
-    section { padding: 4rem 2rem; }
-    .reel-section { padding: 4rem 2rem; }
-    .reel-grid { grid-template-columns: 1fr; }
-    .exp-layout { grid-template-columns: 1fr; gap: 2rem; }
-    .exp-sticky { position: static; }
-    .skills-grid { grid-template-columns: 1fr; }
-    .about-section { grid-template-columns: 1fr; }
-    .about-left, .about-right { padding: 4rem 2rem; }
-    .contact-section { padding: 4rem 2rem; }
-    footer { padding: 2rem; }
-  }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --navy:        #0A1628;
+  --navy-mid:    #0F2040;
+  --navy-soft:   #162B52;
+  --lavender:    #8B7FD4;
+  --lav-light:   #B8B0E8;
+  --lav-pale:    #ECEAF8;
+  --lav-dim:     #6B5FC4;
+  --white:       #FFFFFF;
+  --granite:     #D6D8DC;
+  --gray-50:     #F7F8FA;
+  --gray-100:    #ECEEF2;
+  --gray-200:    #D8DBE4;
+  --gray-400:    #9198AA;
+  --gray-600:    #555E72;
+  --text:        #0F1623;
+}
+
+html { scroll-behavior: smooth; }
+body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--text); overflow-x: hidden; }
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 5rem; height: 64px;
+  background: rgba(10, 22, 40, 0.96);
+  border-bottom: 1px solid rgba(139,127,212,0.15);
+}
+.nav-logo {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.25rem; color: var(--white); text-decoration: none; letter-spacing: 0.01em;
+}
+.nav-logo em { font-style: normal; color: var(--lav-light); }
+.nav-links { display: flex; gap: 2.5rem; list-style: none; }
+.nav-links a {
+  font-size: 0.72rem; font-weight: 500; letter-spacing: 0.14em;
+  text-transform: uppercase; color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--lav-light); }
+
+/* HERO */
+.hero {
+  min-height: 100vh; background: var(--navy);
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 8rem 5rem 5rem; position: relative; overflow: hidden;
+}
+.hero-bg-ring {
+  position: absolute; border-radius: 50%;
+  border: 1px solid rgba(139,127,212,0.1); pointer-events: none;
+}
+.ring-1 { width: 600px; height: 600px; top: -200px; right: -100px; }
+.ring-2 { width: 900px; height: 900px; top: -400px; right: -300px; }
+.ring-3 { width: 400px; height: 400px; bottom: -150px; left: 200px; }
+
+.hero-inner {
+  display: grid; grid-template-columns: 1fr 420px;
+  gap: 5rem; align-items: center; position: relative; z-index: 2; max-width: 1300px;
+}
+.hero-eyebrow {
+  font-family: 'DM Mono', monospace; font-size: 0.68rem;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--lavender); margin-bottom: 1.5rem;
+}
+.hero-name {
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(3.5rem, 6vw, 6rem);
+  line-height: 1; color: var(--white); margin-bottom: 0.3rem;
+}
+.hero-name-last {
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(3.5rem, 6vw, 6rem);
+  line-height: 1; color: var(--lav-light); display: block; margin-bottom: 2rem;
+}
+.hero-desc {
+  font-size: 1rem; font-weight: 300; line-height: 1.85;
+  color: rgba(255,255,255,0.5); max-width: 520px; margin-bottom: 2.5rem;
+}
+.hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
+.btn {
+  display: inline-block; padding: 0.8rem 1.8rem;
+  font-size: 0.75rem; font-weight: 500; letter-spacing: 0.12em;
+  text-transform: uppercase; text-decoration: none;
+  transition: all 0.2s; font-family: 'DM Sans', sans-serif; border: none; cursor: pointer;
+}
+.btn-primary { background: var(--lavender); color: var(--white); }
+.btn-primary:hover { background: var(--lav-light); transform: translateY(-2px); }
+.btn-outline { background: transparent; color: rgba(255,255,255,0.7); border: 1px solid rgba(255,255,255,0.18); }
+.btn-outline:hover { border-color: var(--lavender); color: var(--lav-light); transform: translateY(-2px); }
+
+/* HERO CARD */
+.hero-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(139,127,212,0.2);
+  padding: 2.5rem;
+}
+.emmy-row {
+  display: flex; align-items: flex-start; gap: 1.25rem;
+  padding-bottom: 2rem; margin-bottom: 2rem;
+  border-bottom: 1px solid rgba(139,127,212,0.15);
+}
+.emmy-icon-wrap {
+  width: 48px; height: 48px; background: rgba(139,127,212,0.15);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.4rem; flex-shrink: 0;
+}
+.emmy-label {
+  font-family: 'DM Mono', monospace; font-size: 0.6rem;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--lavender); margin-bottom: 0.4rem;
+}
+.emmy-title { font-size: 0.9rem; font-weight: 500; color: var(--white); line-height: 1.4; }
+.emmy-year { font-size: 0.75rem; color: rgba(255,255,255,0.35); margin-top: 0.2rem; }
+
+.hero-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: rgba(139,127,212,0.1); }
+.stat { background: var(--navy); padding: 1.25rem 1rem; }
+.stat-num {
+  font-family: 'Poppins', sans-serif; font-size: 2rem;
+  color: var(--lav-light); display: block; line-height: 1;
+}
+.stat-label {
+  font-size: 0.65rem; font-weight: 500; letter-spacing: 0.1em;
+  text-transform: uppercase; color: rgba(255,255,255,0.35); margin-top: 0.3rem;
+}
+
+/* SECTION BASE */
+.section-tag {
+  font-family: 'DM Mono', monospace; font-size: 0.66rem;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--lavender); margin-bottom: 0.75rem;
+}
+.section-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  color: var(--navy); line-height: 1.05; margin-bottom: 0.5rem;
+}
+.section-title em { color: var(--lavender); font-style: normal; }
+.section-title.light { color: var(--white); }
+.section-title.light em { color: var(--lav-light); }
+.divider { width: 40px; height: 2px; background: var(--lavender); margin-bottom: 3rem; }
+
+/* REEL */
+.reel-section { background: var(--navy-mid); padding: 6rem 5rem; }
+.reel-intro {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
+  align-items: end; margin-bottom: 3.5rem;
+}
+.reel-intro-text {
+  font-size: 0.95rem; font-weight: 300; line-height: 1.8;
+  color: rgba(255,255,255,0.45); margin-top: 1rem;
+}
+.reel-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(139,127,212,0.08); }
+.reel-card {
+  background: var(--navy-mid); transition: background 0.25s;
+  text-decoration: none; display: block;
+}
+.reel-card:hover { background: rgba(139,127,212,0.07); }
+.reel-thumb {
+  aspect-ratio: 16/9; background: rgba(255,255,255,0.03);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center; position: relative; overflow: hidden;
+}
+.reel-thumb-lines {
+  position: absolute; inset: 0;
+  background: repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(139,127,212,0.04) 39px, rgba(139,127,212,0.04) 40px);
+}
+.play-ring {
+  width: 52px; height: 52px; border-radius: 50%;
+  border: 1.5px solid rgba(139,127,212,0.4);
+  display: flex; align-items: center; justify-content: center;
+  position: relative; z-index: 1; transition: all 0.2s;
+}
+.reel-card:hover .play-ring { border-color: var(--lavender); background: rgba(139,127,212,0.12); }
+.play-ring::after {
+  content: ''; width: 0; height: 0; border-style: solid;
+  border-width: 8px 0 8px 15px;
+  border-color: transparent transparent transparent var(--lavender);
+  margin-left: 3px;
+}
+.reel-placeholder {
+  font-family: 'DM Mono', monospace; font-size: 0.58rem;
+  letter-spacing: 0.15em; text-transform: uppercase;
+  color: rgba(255,255,255,0.18); margin-top: 0.9rem; position: relative; z-index: 1;
+}
+.reel-info { padding: 1.25rem 1.5rem 1.75rem; border-top: 1px solid rgba(139,127,212,0.08); }
+.reel-client {
+  font-family: 'DM Mono', monospace; font-size: 0.6rem;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--lavender); margin-bottom: 0.35rem;
+}
+.reel-title { font-size: 0.88rem; font-weight: 500; color: var(--white); line-height: 1.35; margin-bottom: 0.4rem; }
+.reel-desc { font-size: 0.75rem; font-weight: 300; color: rgba(255,255,255,0.38); line-height: 1.55; }
+
+/* EXPERIENCE */
+.experience-section { background: var(--granite); padding: 6rem 5rem; }
+.exp-layout { display: grid; grid-template-columns: 280px 1fr; gap: 6rem; align-items: start; }
+.exp-sticky { position: sticky; top: 5rem; }
+.exp-body-text { font-size: 0.9rem; font-weight: 300; line-height: 1.8; color: var(--gray-400); margin-top: 1.25rem; }
+.exp-list { display: flex; flex-direction: column; }
+.exp-item {
+  display: grid; grid-template-columns: 110px 1fr;
+  gap: 2rem; padding: 2.25rem 0;
+  border-top: 1px solid var(--navy);
+}
+.exp-item:last-child { border-bottom: 1px solid var(--navy); }
+.exp-dates {
+  font-family: 'DM Mono', monospace; font-size: 0.65rem;
+  letter-spacing: 0.08em; color: var(--gray-400);
+  line-height: 1.5; padding-top: 0.25rem;
+}
+.exp-role {
+  font-family: 'Poppins', sans-serif; font-size: 1.2rem;
+  color: var(--navy); line-height: 1.15; margin-bottom: 0.2rem;
+}
+.exp-company {
+  font-size: 0.75rem; font-weight: 500; letter-spacing: 0.06em;
+  color: var(--lavender); margin-bottom: 0.9rem; text-transform: uppercase;
+}
+.exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.45rem; }
+.exp-bullets li {
+  font-size: 0.83rem; font-weight: 300; color: var(--gray-600);
+  line-height: 1.65; padding-left: 1.1rem; position: relative;
+}
+.exp-bullets li::before {
+  content: ''; position: absolute; left: 0; top: 0.58rem;
+  width: 5px; height: 1px; background: var(--lavender);
+}
+
+/* SKILLS */
+.skills-section { background: var(--granite); padding: 6rem 5rem; }
+.skills-header { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: end; margin-bottom: 3.5rem; }
+.skills-header-text { font-size: 0.9rem; font-weight: 300; line-height: 1.8; color: var(--gray-400); }
+.skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+.skill-card {
+  background: var(--white); padding: 2rem;
+  border: 1px solid var(--gray-100);
+  transition: border-color 0.2s, transform 0.2s;
+}
+.skill-card:hover { border-color: var(--lav-pale); transform: translateY(-3px); }
+.skill-card-top { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.25rem; }
+.skill-dot { width: 8px; height: 8px; background: var(--lavender); border-radius: 50%; flex-shrink: 0; }
+.skill-heading { font-size: 0.8rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--navy); }
+.skill-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.tag {
+  font-size: 0.68rem; font-weight: 400; letter-spacing: 0.04em;
+  padding: 0.3rem 0.7rem; background: var(--gray-50);
+  border: 1px solid var(--gray-200); color: var(--gray-600);
+}
+.tag.hi { background: var(--lav-pale); border-color: rgba(139,127,212,0.25); color: var(--lav-dim); font-weight: 500; }
+
+/* ABOUT */
+.about-section { background: var(--white); padding: 0; display: grid; grid-template-columns: 1fr 1fr; }
+.about-left { padding: 6rem 5rem; background: var(--granite); }
+.about-right { background: var(--navy); padding: 6rem 5rem; display: flex; flex-direction: column; justify-content: center; }
+.about-text { font-size: 0.95rem; font-weight: 300; line-height: 1.9; color: var(--gray-600); margin-top: 1.25rem; }
+.about-text + .about-text { margin-top: 1rem; }
+.cred-list { list-style: none; display: flex; flex-direction: column; gap: 1.75rem; margin-top: 2.5rem; }
+.cred-item { display: flex; align-items: flex-start; gap: 1rem; }
+.cred-line { width: 2px; min-height: 40px; background: var(--lavender); flex-shrink: 0; margin-top: 0.2rem; }
+.cred-head { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--lav-light); margin-bottom: 0.3rem; }
+.cred-body { font-size: 0.82rem; font-weight: 300; color: rgba(255,255,255,0.45); line-height: 1.6; }
+
+/* CONTACT */
+.contact-section { background: var(--navy-mid); padding: 6rem 5rem; }
+.contact-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+.contact-sub { font-size: 0.95rem; font-weight: 300; color: rgba(255,255,255,0.4); line-height: 1.8; margin-top: 1.25rem; max-width: 400px; }
+.contact-links { display: flex; flex-direction: column; gap: 1px; background: rgba(139,127,212,0.1); }
+.contact-link {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.25rem 1.5rem; background: var(--navy-mid);
+  text-decoration: none; transition: background 0.2s;
+}
+.contact-link:hover { background: rgba(139,127,212,0.08); }
+.contact-link-label {
+  font-family: 'DM Mono', monospace; font-size: 0.6rem;
+  letter-spacing: 0.16em; text-transform: uppercase; color: var(--lavender);
+}
+.contact-link-value { font-size: 0.85rem; font-weight: 300; color: rgba(255,255,255,0.65); }
+.contact-arrow { color: rgba(139,127,212,0.4); font-size: 0.9rem; transition: color 0.2s; }
+.contact-link:hover .contact-arrow { color: var(--lavender); }
+
+/* FOOTER */
+footer {
+  background: var(--navy); text-align: center; padding: 1.75rem 5rem;
+  font-family: 'DM Mono', monospace; font-size: 0.62rem;
+  letter-spacing: 0.12em; color: rgba(255,255,255,0.2); text-transform: uppercase;
+}
+
+@media (max-width: 960px) {
+  nav { padding: 0 2rem; }
+  .nav-links { gap: 1.5rem; }
+  .hero { padding: 7rem 2rem 4rem; }
+  .hero-inner { grid-template-columns: 1fr; gap: 3rem; }
+  .reel-section, .experience-section, .skills-section, .contact-section { padding: 4rem 2rem; }
+  .reel-intro, .skills-header, .contact-inner { grid-template-columns: 1fr; gap: 2rem; }
+  .reel-grid { grid-template-columns: 1fr; }
+  .skills-grid { grid-template-columns: 1fr 1fr; }
+  .exp-layout { grid-template-columns: 1fr; gap: 2rem; }
+  .exp-sticky { position: static; }
+  .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
+  .about-section { grid-template-columns: 1fr; }
+  .about-left, .about-right { padding: 4rem 2rem; }
+  footer { padding: 1.5rem 2rem; }
+}
 </style>
 </head>
 <body>
 
 <nav>
-  <a href="#" class="nav-logo">Eric <span>Reithel</span></a>
+  <a href="#" class="nav-logo">Eric </em>Reithel</em></a>
   <ul class="nav-links">
     <li><a href="#reel">Work</a></li>
     <li><a href="#experience">Experience</a></li>
@@ -727,56 +329,52 @@
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-left">
-    <p class="hero-eyebrow">Video Editor &amp; Broadcast Journalist</p>
-    <h1 class="hero-name">Eric<span>Reithel</span></h1>
-    <p class="hero-tagline">Emmy Award-winning editor and storyteller with 10+ years transforming raw footage into compelling content across broadcast, digital, and social platforms.</p>
-    <div class="hero-cta">
-      <a href="#reel" class="btn btn-primary">View My Work</a>
-      <a href="#contact" class="btn btn-outline">Get In Touch</a>
+  <div class="hero-bg-ring ring-1"></div>
+  <div class="hero-bg-ring ring-2"></div>
+  <div class="hero-bg-ring ring-3"></div>
+  <div class="hero-inner">
+    <div>
+      <p class="hero-eyebrow">Video Editor &amp; Broadcast Journalist</p>
+      <h1 class="hero-name">Eric<span class="hero-name-last">Reithel.</span></h1>
+      <p class="hero-desc">Emmy Award-winning journalist, video editor, and storyteller with 10+ years transforming raw footage into compelling content across broadcast, digital, and social platforms.</p>
+      <div class="hero-cta">
+        <a href="#reel" class="btn btn-primary">View My Work</a>
+        <a href="#contact" class="btn btn-outline">Get In Touch</a>
+      </div>
     </div>
-  </div>
-  <div class="hero-right">
-    <div class="emmy-badge">
-      <span class="emmy-icon">🏆</span>
-      <p class="emmy-label">Chicago/Midwest Regional Emmy</p>
-      <p class="emmy-title">Outstanding Achievement<br>Morning Newscast</p>
-      <p class="emmy-sub">Larger Markets (1–50) &nbsp;·&nbsp; 2018–2019</p>
-    </div>
-    <div class="hero-stats">
-      <div class="stat">
-        <span class="stat-num">10+</span>
-        <span class="stat-label">Years Experience</span>
+    <div class="hero-card">
+      <div class="emmy-row">
+        <div class="emmy-icon-wrap">🏆</div>
+        <div>
+          <p class="emmy-label">Chicago / Midwest Regional Emmy</p>
+          <p class="emmy-title">Outstanding Achievement<br>Morning Newscast, Larger Markets (1–50)</p>
+          <p class="emmy-year">2018 – 2019</p>
+        </div>
       </div>
-      <div class="stat">
-        <span class="stat-num">20+</span>
-        <span class="stat-label">Freelance Projects</span>
-      </div>
-      <div class="stat">
-        <span class="stat-num">3.4M</span>
-        <span class="stat-label">HH Reached Daily</span>
-      </div>
-      <div class="stat">
-        <span class="stat-num">#1</span>
-        <span class="stat-label">Morning Ratings</span>
+      <div class="hero-stats">
+        <div class="stat"><span class="stat-num">10+</span><span class="stat-label">Years Experience</span></div>
+        <div class="stat"><span class="stat-num">20+</span><span class="stat-label">Freelance Projects</span></div>
+        <div class="stat"><span class="stat-num">3.4M</span><span class="stat-label">HH Reached Daily</span></div>
+        <div class="stat"><span class="stat-num">#1</span><span class="stat-label">Morning Ratings</span></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- REEL / WORK -->
+<!-- REEL -->
 <section class="reel-section" id="reel">
-  <p class="section-tag">Selected Work</p>
-  <h2 class="section-title light">The Reel</h2>
-  <div class="divider"></div>
-
+  <div class="reel-intro">
+    <div>
+      <p class="section-tag">Selected Work</p>
+      <h2 class="section-title light">The <em>Reel</em></h2>
+      <div class="divider"></div>
+    </div>
+    <p class="reel-intro-text">From live breaking news to corporate event highlight reels and social-first short-form content — a cross-platform body of work built on one consistent principle: find the moment that matters.</p>
+  </div>
   <div class="reel-grid">
 
     <a href="#" class="reel-card">
-      <div class="reel-thumb">
-        <div class="play-btn"></div>
-        <p class="reel-placeholder-text">Demo reel coming soon</p>
-      </div>
+      <div class="reel-thumb"><div class="reel-thumb-lines"></div><div class="play-ring"></div><p class="reel-placeholder">Demo reel coming soon</p></div>
       <div class="reel-info">
         <p class="reel-client">Demo Reel</p>
         <p class="reel-title">Eric Reithel — Editor Reel 2025</p>
@@ -785,46 +383,34 @@
     </a>
 
     <a href="#" class="reel-card">
-      <div class="reel-thumb">
-        <div class="play-btn"></div>
-        <p class="reel-placeholder-text">Video coming soon</p>
-      </div>
+      <div class="reel-thumb"><div class="reel-thumb-lines"></div><div class="play-ring"></div><p class="reel-placeholder">Video coming soon</p></div>
       <div class="reel-info">
-        <p class="reel-client">Butterfly Productions / Laugh Your Face Off</p>
-        <p class="reel-title">Laugh Your Face Off — Charity Comedy Event Highlight Reel</p>
-        <p class="reel-desc">Live comedy event at Navy Pier, Chicago. Distilled hours of footage into a high-energy highlight reel capturing the night's best moments.</p>
+        <p class="reel-client">Butterfly Productions</p>
+        <p class="reel-title">Laugh Your Face Off — Charity Comedy Highlight Reel</p>
+        <p class="reel-desc">Live comedy event at Navy Pier, Chicago. Hours of footage distilled into a high-energy highlight reel.</p>
       </div>
     </a>
 
     <a href="#" class="reel-card">
-      <div class="reel-thumb">
-        <div class="play-btn"></div>
-        <p class="reel-placeholder-text">Video coming soon</p>
-      </div>
+      <div class="reel-thumb"><div class="reel-thumb-lines"></div><div class="play-ring"></div><p class="reel-placeholder">Video coming soon</p></div>
       <div class="reel-info">
-        <p class="reel-client">Butterfly Productions / Clune Construction</p>
-        <p class="reel-title">Clune Construction — Corporate Event Highlight Reel</p>
-        <p class="reel-desc">Brand-aligned corporate sizzle reel synthesizing event footage into a polished deliverable for one of Chicago's leading construction firms.</p>
+        <p class="reel-client">Butterfly Productions</p>
+        <p class="reel-title">Clune Construction — Corporate Event Sizzle Reel</p>
+        <p class="reel-desc">Brand-aligned corporate sizzle reel for one of Chicago's leading construction firms.</p>
       </div>
     </a>
 
     <a href="#" class="reel-card">
-      <div class="reel-thumb">
-        <div class="play-btn"></div>
-        <p class="reel-placeholder-text">Video coming soon</p>
-      </div>
+      <div class="reel-thumb"><div class="reel-thumb-lines"></div><div class="play-ring"></div><p class="reel-placeholder">Video coming soon</p></div>
       <div class="reel-info">
         <p class="reel-client">Windy City Curling</p>
         <p class="reel-title">Windy City Curling — Sizzle Reel</p>
-        <p class="reel-desc">Promotional sizzle reel crafted from B-roll footage, optimized for social media and event promotion.</p>
+        <p class="reel-desc">Promotional sizzle reel crafted from B-roll, optimized for social media and event promotion.</p>
       </div>
     </a>
 
     <a href="#" class="reel-card">
-      <div class="reel-thumb">
-        <div class="play-btn"></div>
-        <p class="reel-placeholder-text">Video coming soon</p>
-      </div>
+      <div class="reel-thumb"><div class="reel-thumb-lines"></div><div class="play-ring"></div><p class="reel-placeholder">Video coming soon</p></div>
       <div class="reel-info">
         <p class="reel-client">Short-Form Content</p>
         <p class="reel-title">Social Media Vertical Video Samples</p>
@@ -833,14 +419,11 @@
     </a>
 
     <a href="#" class="reel-card">
-      <div class="reel-thumb">
-        <div class="play-btn"></div>
-        <p class="reel-placeholder-text">Video coming soon</p>
-      </div>
+      <div class="reel-thumb"><div class="reel-thumb-lines"></div><div class="play-ring"></div><p class="reel-placeholder">Video coming soon</p></div>
       <div class="reel-info">
         <p class="reel-client">Broadcast</p>
         <p class="reel-title">CBS News Chicago — Broadcast Clips</p>
-        <p class="reel-desc">Selected news segments and features from six years at CBS News Chicago, the nation's third-largest broadcast market.</p>
+        <p class="reel-desc">Selected news segments from six years at CBS News Chicago, the nation's third-largest broadcast market.</p>
       </div>
     </a>
 
@@ -854,68 +437,66 @@
       <p class="section-tag">Career</p>
       <h2 class="section-title">Experience</h2>
       <div class="divider"></div>
-      <p class="exp-body-text">A decade of deadline-driven storytelling, from live breaking news to long-form features — across broadcast, digital, and corporate platforms.</p>
+      <p class="exp-body-text">A decade of deadline-driven storytelling across broadcast, digital, corporate, and social platforms.</p>
     </div>
     <div class="exp-list">
 
       <div class="exp-item">
-        <span class="exp-dates">Apr 2016 – Present</span>
+        <span class="exp-dates">Apr 2016<br>Present</span>
         <div>
           <p class="exp-role">Freelance Video Editor</p>
           <p class="exp-company">Independent / Butterfly Productions — Chicago, IL &amp; Remote</p>
           <ul class="exp-bullets">
-            <li>Reviewed and distilled hours of raw event footage into highlight and sizzle reels for Butterfly Productions, a Chicago-based production company</li>
-            <li>Produced a highlight reel for <em>Laugh Your Face Off</em>, a charity comedy event at Navy Pier, Chicago — capturing the energy of a live performance for a broad audience</li>
-            <li>Produced a highlight reel for Clune Construction, synthesizing corporate event footage into a brand-aligned deliverable</li>
-            <li>20+ projects completed across entertainment, sports, and music clients using DaVinci Resolve and EDIUS</li>
-            <li>Short-form vertical video production for Twitch creators and social platforms (Instagram, TikTok, YouTube Shorts)</li>
-            <li>Full post-production workflows: non-linear editing, subtitle integration, motion graphics, color correction</li>
+            <li>Reviewed and distilled hours of raw event footage into highlight and sizzle reels for Butterfly Productions</li>
+            <li>Produced a highlight reel for <em>Laugh Your Face Off</em>, a charity comedy event at Navy Pier, Chicago</li>
+            <li>Produced a corporate sizzle reel for Clune Construction</li>
+            <li>20+ projects across entertainment, sports, and music using DaVinci Resolve and EDIUS</li>
+            <li>Short-form vertical video for Twitch creators and social platforms (Instagram, TikTok, YouTube Shorts)</li>
+            <li>Full post-production: non-linear editing, subtitle integration, motion graphics, color correction</li>
           </ul>
         </div>
       </div>
 
       <div class="exp-item">
-        <span class="exp-dates">May 2018 – Sep 2024</span>
+        <span class="exp-dates">May 2018<br>Sep 2024</span>
         <div>
           <p class="exp-role">News Writer &amp; Producer</p>
           <p class="exp-company">CBS News Chicago (WBBM-TV) — Chicago, IL</p>
           <ul class="exp-bullets">
-            <li>Edited video, audio, and multimedia assets daily for the nation's third-largest broadcast market reaching 3.4 million households</li>
-            <li>Reviewed hours of raw footage daily to identify key moments and the strongest narrative threads</li>
-            <li>Distilled complex stories into clear, audience-focused narratives for broadcast and digital platforms</li>
-            <li>Collaborated with producers, on-air talent, and digital teams under live, daily deadlines</li>
-            <li>Won the 2018–2019 Chicago/Midwest Regional Emmy Award: Outstanding Achievement for Morning Newscast, Larger Markets (1–50)</li>
+            <li>Edited video, audio, and multimedia assets daily for the nation's third-largest broadcast market — 3.4 million households</li>
+            <li>Reviewed hours of raw footage daily to identify key moments and strongest narrative threads</li>
+            <li>Collaborated with producers, on-air talent, and digital teams under live daily deadlines</li>
+            <li>Won the 2018–2019 Chicago/Midwest Regional Emmy: Outstanding Achievement, Morning Newscast, Larger Markets (1–50)</li>
           </ul>
         </div>
       </div>
 
       <div class="exp-item">
-        <span class="exp-dates">Apr 2016 – Apr 2018</span>
+        <span class="exp-dates">Apr 2016<br>Apr 2018</span>
         <div>
           <p class="exp-role">News Producer</p>
           <p class="exp-company">Action 2 News This Morning (WBAY-TV) — Green Bay, WI</p>
           <ul class="exp-bullets">
-            <li>Assembled and edited daily newscasts across northeast Wisconsin in a live, deadline-driven environment</li>
-            <li>Maintained WBAY's #1 weekday morning ranking throughout tenure</li>
+            <li>Assembled and edited daily newscasts in a live, deadline-driven environment</li>
+            <li>Maintained WBAY's #1 weekday morning ratings throughout tenure</li>
           </ul>
         </div>
       </div>
 
       <div class="exp-item">
-        <span class="exp-dates">May 2021 – May 2025</span>
+        <span class="exp-dates">May 2021<br>May 2025</span>
         <div>
           <p class="exp-role">Communications Lead</p>
           <p class="exp-company">Windy City Curling — Villa Park, IL</p>
           <ul class="exp-bullets">
             <li>Produced and edited sizzle reels and promotional video content for the organization</li>
             <li>Managed all external communications including social media, newsletters, and media outreach</li>
-            <li>Secured coverage from Chicago-area television, print, and digital outlets</li>
           </ul>
         </div>
       </div>
 
       <div class="exp-item">
-        <span class="exp-dates">Apr 2014 – May 2016</span>
+        <span class="exp-dates">Apr 2014<br>May 2016</span>
         <div>
           <p class="exp-role">Anchor, Reporter &amp; Producer</p>
           <p class="exp-company">Lakeshore Public Media (WLPR-FM) — Merrillville, IN</p>
@@ -932,84 +513,65 @@
 
 <!-- SKILLS -->
 <section class="skills-section" id="skills">
-  <p class="section-tag">Toolkit</p>
-  <h2 class="section-title light">Skills &amp; Software</h2>
-  <div class="divider"></div>
-
+  <div class="skills-header">
+    <div>
+      <p class="section-tag">Toolkit</p>
+      <h2 class="section-title">Skills &amp; <em>Software</em></h2>
+      <div class="divider"></div>
+    </div>
+    <p class="skills-header-text">Primary tools are DaVinci Resolve and EDIUS — professional non-linear editing environments with workflows comparable to Adobe Premiere. Working familiarity with the Adobe Suite.</p>
+  </div>
   <div class="skills-grid">
 
-    <div class="skill-block">
-      <span class="skill-icon">🎬</span>
-      <p class="skill-heading">Editing Software</p>
+    <div class="skill-card">
+      <div class="skill-card-top"><span class="skill-dot"></span><p class="skill-heading">Editing Software</p></div>
       <div class="skill-tags">
-        <span class="tag highlight">DaVinci Resolve</span>
-        <span class="tag highlight">EDIUS</span>
-        <span class="tag">Adobe Premiere</span>
-        <span class="tag">After Effects</span>
-        <span class="tag">Photoshop</span>
+        <span class="tag hi">DaVinci Resolve</span><span class="tag hi">EDIUS</span>
+        <span class="tag">Adobe Premiere</span><span class="tag">After Effects</span><span class="tag">Photoshop</span>
       </div>
     </div>
 
-    <div class="skill-block">
-      <span class="skill-icon">✂️</span>
-      <p class="skill-heading">Post-Production</p>
+    <div class="skill-card">
+      <div class="skill-card-top"><span class="skill-dot"></span><p class="skill-heading">Post-Production</p></div>
       <div class="skill-tags">
-        <span class="tag highlight">Non-Linear Editing</span>
-        <span class="tag highlight">Color Correction</span>
-        <span class="tag highlight">Audio Mixing</span>
-        <span class="tag highlight">Motion Graphics</span>
-        <span class="tag highlight">Subtitle Integration</span>
-        <span class="tag highlight">Graphic Overlays</span>
+        <span class="tag hi">Non-Linear Editing</span><span class="tag hi">Color Correction</span>
+        <span class="tag hi">Audio Mixing</span><span class="tag hi">Motion Graphics</span>
+        <span class="tag hi">Subtitle Integration</span><span class="tag">Graphic Overlays</span>
       </div>
     </div>
 
-    <div class="skill-block">
-      <span class="skill-icon">📱</span>
-      <p class="skill-heading">Platforms &amp; Distribution</p>
+    <div class="skill-card">
+      <div class="skill-card-top"><span class="skill-dot"></span><p class="skill-heading">Platforms</p></div>
       <div class="skill-tags">
-        <span class="tag highlight">YouTube</span>
-        <span class="tag highlight">TikTok</span>
-        <span class="tag highlight">Instagram Reels</span>
-        <span class="tag highlight">YouTube Shorts</span>
-        <span class="tag">Twitch</span>
-        <span class="tag">Broadcast (CBS, NBC)</span>
+        <span class="tag hi">YouTube</span><span class="tag hi">TikTok</span>
+        <span class="tag hi">Instagram Reels</span><span class="tag hi">YouTube Shorts</span>
+        <span class="tag">Twitch</span><span class="tag">Broadcast</span>
       </div>
     </div>
 
-    <div class="skill-block">
-      <span class="skill-icon">📖</span>
-      <p class="skill-heading">Storytelling</p>
+    <div class="skill-card">
+      <div class="skill-card-top"><span class="skill-dot"></span><p class="skill-heading">Storytelling</p></div>
       <div class="skill-tags">
-        <span class="tag highlight">Narrative Structure</span>
-        <span class="tag highlight">Pacing &amp; Timing</span>
-        <span class="tag highlight">Highlight Reel Production</span>
-        <span class="tag highlight">Raw Footage Review</span>
-        <span class="tag highlight">Sizzle Reels</span>
-        <span class="tag">Audience Analytics</span>
+        <span class="tag hi">Narrative Structure</span><span class="tag hi">Pacing &amp; Timing</span>
+        <span class="tag hi">Highlight Reels</span><span class="tag hi">Raw Footage Review</span>
+        <span class="tag hi">Sizzle Reels</span><span class="tag">Audience Analytics</span>
       </div>
     </div>
 
-    <div class="skill-block">
-      <span class="skill-icon">🎙️</span>
-      <p class="skill-heading">Journalism</p>
+    <div class="skill-card">
+      <div class="skill-card-top"><span class="skill-dot"></span><p class="skill-heading">Journalism</p></div>
       <div class="skill-tags">
-        <span class="tag highlight">News Writing</span>
-        <span class="tag highlight">Breaking News</span>
-        <span class="tag highlight">Broadcast Production</span>
-        <span class="tag highlight">Editorial Judgment</span>
-        <span class="tag">Live Production</span>
-        <span class="tag">Interviewing</span>
+        <span class="tag hi">News Writing</span><span class="tag hi">Breaking News</span>
+        <span class="tag hi">Broadcast Production</span><span class="tag hi">Editorial Judgment</span>
+        <span class="tag">Live Production</span><span class="tag">Interviewing</span>
       </div>
     </div>
 
-    <div class="skill-block">
-      <span class="skill-icon">🤝</span>
-      <p class="skill-heading">Collaboration</p>
+    <div class="skill-card">
+      <div class="skill-card-top"><span class="skill-dot"></span><p class="skill-heading">Collaboration</p></div>
       <div class="skill-tags">
-        <span class="tag highlight">Cross-Functional Teams</span>
-        <span class="tag highlight">Deadline-Driven Workflow</span>
-        <span class="tag highlight">Client Deliverables</span>
-        <span class="tag highlight">Brand Alignment</span>
+        <span class="tag hi">Cross-Functional Teams</span><span class="tag hi">Deadline-Driven</span>
+        <span class="tag hi">Client Deliverables</span><span class="tag hi">Brand Alignment</span>
         <span class="tag">Remote Work</span>
       </div>
     </div>
@@ -1021,42 +583,30 @@
 <section class="about-section" id="about">
   <div class="about-left">
     <p class="section-tag">Background</p>
-    <h2 class="section-title">About Eric</h2>
+    <h2 class="section-title">About <em>Eric</em></h2>
     <div class="divider"></div>
     <p class="about-text">I'm an Emmy Award-winning video editor and broadcast journalist based in the Chicago area, with more than a decade of experience telling stories that audiences actually care about.</p>
-    <p class="about-text" style="margin-top: 1rem;">My background is in live broadcast news — where speed, accuracy, and editorial instinct aren't optional — but my work spans corporate events, social media content, sizzle reels, and long-form digital production. Whether I'm combing through hours of raw footage to find the moment that makes a highlight reel, or shaping a breaking story for 3.4 million households, the goal is always the same: clarity, pacing, and impact.</p>
-    <p class="about-text" style="margin-top: 1rem;">I'm also a trained improviser and performer, which means I think fast, adapt quickly, and never mind a creative curveball.</p>
+    <p class="about-text">My background is in live broadcast news — where speed, accuracy, and editorial instinct aren't optional — but my work spans corporate events, social media content, sizzle reels, and long-form digital production. Whether I'm combing through hours of raw footage to find the moment that makes a highlight reel, or shaping a breaking story for 3.4 million households, the goal is always the same: clarity, pacing, and impact.</p>
+    <p class="about-text">I'm also a trained improviser and performer, which means I think fast, adapt quickly, and never mind a creative curveball.</p>
   </div>
   <div class="about-right">
     <p class="section-tag">At a Glance</p>
-    <ul class="credential-list">
-      <li class="credential-item">
-        <span class="cred-dot"></span>
-        <div class="cred-text">
-          <strong>Emmy Award Winner</strong>
-          2018–2019 Chicago/Midwest Regional Emmy — Outstanding Achievement for Morning Newscast, Larger Markets (1–50)
-        </div>
+    <ul class="cred-list">
+      <li class="cred-item">
+        <div class="cred-line"></div>
+        <div><p class="cred-head">Emmy Award Winner</p><p class="cred-body">2018–2019 Chicago/Midwest Regional Emmy — Outstanding Achievement for Morning Newscast, Larger Markets (1–50)</p></div>
       </li>
-      <li class="credential-item">
-        <span class="cred-dot"></span>
-        <div class="cred-text">
-          <strong>CBS News Chicago</strong>
-          Six years as News Writer and Producer in the nation's third-largest broadcast market
-        </div>
+      <li class="cred-item">
+        <div class="cred-line"></div>
+        <div><p class="cred-head">CBS News Chicago</p><p class="cred-body">Six years as News Writer and Producer in the nation's third-largest broadcast market</p></div>
       </li>
-      <li class="credential-item">
-        <span class="cred-dot"></span>
-        <div class="cred-text">
-          <strong>Freelance Video Editor</strong>
-          10+ years, 20+ projects across entertainment, sports, corporate, and live-event content
-        </div>
+      <li class="cred-item">
+        <div class="cred-line"></div>
+        <div><p class="cred-head">Freelance Video Editor</p><p class="cred-body">10+ years, 20+ projects across entertainment, sports, corporate, and live-event content</p></div>
       </li>
-      <li class="credential-item">
-        <span class="cred-dot"></span>
-        <div class="cred-text">
-          <strong>BA, Theatre — Columbia College Chicago</strong>
-          Formal training in improvisation, live performance, and emcee work
-        </div>
+      <li class="cred-item">
+        <div class="cred-line"></div>
+        <div><p class="cred-head">BA, Theatre — Columbia College Chicago</p><p class="cred-body">Formal training in improvisation, live performance, and emcee work</p></div>
       </li>
     </ul>
   </div>
@@ -1064,30 +614,39 @@
 
 <!-- CONTACT -->
 <section class="contact-section" id="contact">
-  <p class="section-tag" style="color: var(--gold);">Let's Work Together</p>
-  <h2 class="section-title light">Get In Touch</h2>
-  <div class="divider" style="margin: 0 auto 1rem;"></div>
-  <p style="font-size: 0.95rem; font-weight: 300; color: rgba(244,241,236,0.55); max-width: 480px; margin: 0 auto; line-height: 1.8;">Available for freelance projects, full-time opportunities, and creative collaborations.</p>
-
-  <div class="contact-links">
-    <a href="tel:+12197818252" class="contact-link">
-      <span class="contact-link-label">Phone</span>
-      <span class="contact-link-value">(219) 781-8252</span>
-    </a>
-    <a href="mailto:eric.reithel@gmail.com" class="contact-link">
-      <span class="contact-link-label">Email</span>
-      <span class="contact-link-value">eric.reithel@gmail.com</span>
-    </a>
-    <a href="https://linkedin.com/in/ericreithel" target="_blank" class="contact-link">
-      <span class="contact-link-label">LinkedIn</span>
-      <span class="contact-link-value">linkedin.com/in/ericreithel</span>
-    </a>
+  <div class="contact-inner">
+    <div>
+      <p class="section-tag">Let's Work Together</p>
+      <h2 class="section-title light">Get In <em>Touch</em></h2>
+      <div class="divider"></div>
+      <p class="contact-sub">Available for freelance projects, full-time opportunities, and creative collaborations.</p>
+    </div>
+    <div class="contact-links">
+      <a href="tel:+12197818252" class="contact-link">
+        <span class="contact-link-label">Phone</span>
+        <span class="contact-link-value">(219) 781-8252</span>
+        <span class="contact-arrow">→</span>
+      </a>
+      <a href="mailto:eric.reithel@gmail.com" class="contact-link">
+        <span class="contact-link-label">Email</span>
+        <span class="contact-link-value">eric.reithel@gmail.com</span>
+        <span class="contact-arrow">→</span>
+      </a>
+      <a href="https://linkedin.com/in/ericreithel" target="_blank" class="contact-link">
+        <span class="contact-link-label">LinkedIn</span>
+        <span class="contact-link-value">linkedin.com/in/ericreithel</span>
+        <span class="contact-arrow">→</span>
+      </a>
+      <a href="https://ereithel.github.io" target="_blank" class="contact-link">
+        <span class="contact-link-label">Portfolio</span>
+        <span class="contact-link-value">ereithel.github.io</span>
+        <span class="contact-arrow">→</span>
+      </a>
+    </div>
   </div>
 </section>
 
-<footer>
-  &copy; 2025 Eric Reithel &nbsp;·&nbsp; Chicago, IL &nbsp;·&nbsp; All rights reserved
-</footer>
+<footer>&copy; 2025 Eric Reithel &nbsp;·&nbsp; Chicago, IL &nbsp;·&nbsp; All rights reserved</footer>
 
 </body>
 </html>
