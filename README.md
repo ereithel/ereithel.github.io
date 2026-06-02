@@ -1,2 +1,2 @@
 # ereithel.github.io
-My Online Video Editing Portfolio
+Welcome to My Online Portfolio
